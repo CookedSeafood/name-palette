@@ -1,0 +1,41 @@
+{
+	"schemaVersion": 1,
+	"id": "namepalette",
+	"version": "${version}",
+	"name": "NamePalette",
+	"description": "Give names color, prefix, and suffix.",
+	"authors": [
+		{
+			"name": "CharcoalWhite",
+			"contact": {
+				"homepage": "https://github.com/CharcoalWhite"
+			}
+		}
+	],
+	"contact": {
+		"homepage": "https://modrinth.com/mod/NamePalette",
+		"sources": "https://github.com/CharcoalWhite/NamePalette"
+	},
+	"license": "GNU-GPL-3.0",
+	"icon": "assets/namepalette/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"org.charcoalwhite.namepalette.NamePalette"
+		]
+	},
+	"mixins": [
+		"namepalette.mixins.json"
+	],
+	"depends": {
+		"fabricloader": ">=0.16.9",
+		"minecraft": "1.21.4",
+		"java": ">=21",
+		"fabric-api": "*",
+		"candywrapper": ">=0.2.11"
+	},
+	"suggests": {
+		"another-mod": "*"
+	},
+	"accessWidener": "namepalette.accesswidener"
+}
