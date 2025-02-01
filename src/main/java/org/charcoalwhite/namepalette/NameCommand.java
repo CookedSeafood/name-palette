@@ -62,12 +62,12 @@ public class NameCommand {
 	private static Team getPlayerTeam(ServerCommandSource source) throws CommandSyntaxException {
 		ServerPlayerEntity player = source.getPlayerOrThrow();
 		String teamName = "name." + player.getUuidAsString();
-		Scoreboard scoreboard = source.getServer().getScoreboard();
 		try {
 			TeamCommand.executeAdd(source, teamName, player.getName());
 		} catch (CommandSyntaxException e) {
 		}
 
+		Scoreboard scoreboard = source.getServer().getScoreboard();
 		Team team = scoreboard.getTeam(teamName);
 		HashSet<ScoreHolder> hashSet = new HashSet<ScoreHolder>();
 		hashSet.add(player.getScoreHolder());
