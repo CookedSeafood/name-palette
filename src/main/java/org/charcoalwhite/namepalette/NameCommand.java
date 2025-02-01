@@ -2,7 +2,6 @@ package org.charcoalwhite.namepalette;
 
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
-import com.mojang.brigadier.exceptions.SimpleCommandExceptionType;
 import java.util.HashSet;
 import net.minecraft.command.CommandRegistryAccess;
 import net.minecraft.command.argument.ColorArgumentType;
@@ -18,8 +17,6 @@ import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 
 public class NameCommand {
-    public static final SimpleCommandExceptionType OPTION_COLOR_UNCHANGED_EXCEPTION = new SimpleCommandExceptionType(Text.literal("commands.name.option.color.unchanged"));
-
     public NameCommand() {
     }
 
