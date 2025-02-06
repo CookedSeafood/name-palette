@@ -4,18 +4,10 @@ NamePalette is a lightweight name customization mod runs server-side for name co
 
 ## Usage
 
-`/name color <color>`
+`/name color <color>` Set your name color.
 
-Decides your name color.
+`/name prefix <prefix>` Set your name prefix.
 
-`/name prefix <prefix>`
+`/name suffix <suffix>` Set your name suffix.
 
-Decides your name prefix.
-
-`/name suffix <suffix>`
-
-Decides your name suffix.
-
-`/name reset`
-
-Reset all changes.
+`/name reset` Reset all changes.
