@@ -3,25 +3,25 @@
 	"id": "namepalette",
 	"version": "${version}",
 	"name": "NamePalette",
-	"description": "Give names color, prefix, and suffix.",
+	"description": "Lightweight name customization mod for name colors, prefix, and suffix.",
 	"authors": [
 		{
-			"name": "CharcoalWhite",
+			"name": "CookedSeafood",
 			"contact": {
-				"homepage": "https://github.com/CharcoalWhite"
+				"homepage": "https://github.com/CookedSeafood"
 			}
 		}
 	],
 	"contact": {
 		"homepage": "https://modrinth.com/mod/NamePalette",
-		"sources": "https://github.com/CharcoalWhite/NamePalette"
+		"sources": "https://github.com/CookedSeafood/NamePalette"
 	},
 	"license": "GNU-GPL-3.0",
 	"icon": "assets/namepalette/icon.png",
 	"environment": "*",
 	"entrypoints": {
 		"main": [
-			"org.charcoalwhite.namepalette.NamePalette"
+			"net.cookedseafood.namepalette.NamePalette"
 		]
 	},
 	"mixins": [

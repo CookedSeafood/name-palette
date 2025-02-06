@@ -1,5 +1,6 @@
-package org.charcoalwhite.namepalette;
+package net.cookedseafood.namepalette;
 
+import net.cookedseafood.namepalette.command.NameCommand;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
 import org.slf4j.Logger;
@@ -19,7 +20,7 @@ public class NamePalette implements ModInitializer {
 		// However, some things (like resources) may still be uninitialized.
 		// Proceed with mild caution.
 
-		LOGGER.info("[NamePalette] This is my name: [MVP+++++++++++++++...");
+		LOGGER.info("[NamePalette] This is my name: [MVP+++...");
 
 		CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) -> NameCommand.register(dispatcher, registryAccess));
 	}

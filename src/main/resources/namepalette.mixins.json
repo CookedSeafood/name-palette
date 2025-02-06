@@ -1,6 +1,6 @@
 {
 	"required": true,
-	"package": "org.charcoalwhite.namepalette.mixin",
+	"package": "net.cookedseafood.namepalette.mixin",
 	"compatibilityLevel": "JAVA_21",
 	"mixins": [
 		
