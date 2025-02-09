@@ -14,6 +14,10 @@ public class NamePalette implements ModInitializer {
 	// That way, it's clear which mod wrote info, warnings, and errors.
 	public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
 
+	public static final byte versionMajor = 1;
+	public static final byte versionMinor = 0;
+	public static final byte versionPatch = 2;
+
 	@Override
 	public void onInitialize() {
 		// This code runs as soon as Minecraft is in a mod-load-ready state.

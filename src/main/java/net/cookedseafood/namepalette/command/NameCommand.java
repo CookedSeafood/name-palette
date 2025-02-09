@@ -3,6 +3,7 @@ package net.cookedseafood.namepalette.command;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import java.util.HashSet;
+import net.cookedseafood.namepalette.NamePalette;
 import net.minecraft.command.CommandRegistryAccess;
 import net.minecraft.command.argument.ColorArgumentType;
 import net.minecraft.command.argument.TextArgumentType;
@@ -24,29 +25,36 @@ public class NameCommand {
         dispatcher.register(
 			CommandManager.literal("name")
 			.then(
-				CommandManager.literal("color")
+				CommandManager.literal("set")
 				.then(
-					CommandManager.argument("value", ColorArgumentType.color())
-					.executes(context -> executeColor((ServerCommandSource)context.getSource(), ColorArgumentType.getColor(context, "value")))
+					CommandManager.literal("color")
+					.then(
+						CommandManager.argument("value", ColorArgumentType.color())
+						.executes(context -> executeColor((ServerCommandSource)context.getSource(), ColorArgumentType.getColor(context, "value")))
+					)
 				)
-			)
-			.then(
-				CommandManager.literal("prefix")
 				.then(
-					CommandManager.argument("prefix", TextArgumentType.text(registryAccess))
-					.executes(context -> executePrefix((ServerCommandSource)context.getSource(), TextArgumentType.getTextArgument(context, "prefix")))
+					CommandManager.literal("prefix")
+					.then(
+						CommandManager.argument("prefix", TextArgumentType.text(registryAccess))
+						.executes(context -> executePrefix((ServerCommandSource)context.getSource(), TextArgumentType.getTextArgument(context, "prefix")))
+					)
 				)
-			)
-			.then(
-				CommandManager.literal("suffix")
 				.then(
-					CommandManager.argument("suffix", TextArgumentType.text(registryAccess))
-					.executes(context -> executeSuffix((ServerCommandSource)context.getSource(), TextArgumentType.getTextArgument(context, "suffix")))
+					CommandManager.literal("suffix")
+					.then(
+						CommandManager.argument("suffix", TextArgumentType.text(registryAccess))
+						.executes(context -> executeSuffix((ServerCommandSource)context.getSource(), TextArgumentType.getTextArgument(context, "suffix")))
+					)
 				)
 			)
 			.then(
 				CommandManager.literal("reset")
 				.executes(context -> executeReset((ServerCommandSource)context.getSource()))
+			)
+			.then(
+				CommandManager.literal("version")
+				.executes(context -> executeVersion((ServerCommandSource)context.getSource()))
 			)
 		);
     }
@@ -81,5 +89,10 @@ public class NameCommand {
 
 	public static int executeReset(ServerCommandSource source) throws CommandSyntaxException {
 		return TeamCommand.executeRemove(source, getPlayerTeam(source));
+	}
+
+	public static int executeVersion(ServerCommandSource source) {
+		source.sendFeedback(() -> Text.literal("NamePalette " + NamePalette.versionMajor + "." + NamePalette.versionMinor + "." + NamePalette.versionPatch), false);
+		return 0;
 	}
 }
