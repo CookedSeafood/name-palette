@@ -2,13 +2,11 @@ package net.cookedseafood.namepalette.command;
 
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
-import java.util.HashSet;
-import net.cookedseafood.namepalette.NamePalette;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 import net.minecraft.command.CommandRegistryAccess;
 import net.minecraft.command.argument.ColorArgumentType;
 import net.minecraft.command.argument.TextArgumentType;
-import net.minecraft.scoreboard.ScoreHolder;
-import net.minecraft.scoreboard.Scoreboard;
 import net.minecraft.scoreboard.Team;
 import net.minecraft.server.command.CommandManager;
 import net.minecraft.server.command.ServerCommandSource;
@@ -52,10 +50,6 @@ public class NameCommand {
 				CommandManager.literal("reset")
 				.executes(context -> executeReset((ServerCommandSource)context.getSource()))
 			)
-			.then(
-				CommandManager.literal("version")
-				.executes(context -> executeVersion((ServerCommandSource)context.getSource()))
-			)
 		);
     }
 
@@ -67,11 +61,8 @@ public class NameCommand {
 		} catch (CommandSyntaxException e) {
 		}
 
-		Scoreboard scoreboard = source.getServer().getScoreboard();
-		Team team = scoreboard.getTeam(teamName);
-		HashSet<ScoreHolder> hashSet = new HashSet<ScoreHolder>();
-		hashSet.add(player.getScoreHolder());
-		TeamCommand.executeJoin(source, team, hashSet);
+		Team team = source.getServer().getScoreboard().getTeam(teamName);
+		TeamCommand.executeJoin(source, team, Stream.of(player.getScoreHolder()).collect(Collectors.toUnmodifiableList()));
 		return team;
 	}
 
@@ -89,10 +80,5 @@ public class NameCommand {
 
 	public static int executeReset(ServerCommandSource source) throws CommandSyntaxException {
 		return TeamCommand.executeRemove(source, getPlayerTeam(source));
-	}
-
-	public static int executeVersion(ServerCommandSource source) {
-		source.sendFeedback(() -> Text.literal("NamePalette " + NamePalette.versionMajor + "." + NamePalette.versionMinor + "." + NamePalette.versionPatch), false);
-		return 0;
 	}
 }

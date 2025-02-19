@@ -1,6 +1,7 @@
 package net.cookedseafood.namepalette;
 
 import net.cookedseafood.namepalette.command.NameCommand;
+import net.cookedseafood.namepalette.command.NamePaletteCommand;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
 import org.slf4j.Logger;
@@ -16,7 +17,7 @@ public class NamePalette implements ModInitializer {
 
 	public static final byte versionMajor = 1;
 	public static final byte versionMinor = 0;
-	public static final byte versionPatch = 2;
+	public static final byte versionPatch = 3;
 
 	@Override
 	public void onInitialize() {
@@ -24,8 +25,9 @@ public class NamePalette implements ModInitializer {
 		// However, some things (like resources) may still be uninitialized.
 		// Proceed with mild caution.
 
-		LOGGER.info("[NamePalette] This is my name: [MVP+++...");
+		LOGGER.info("[NamePalette] Say hey YOURNAME how is it going");
 
+		CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) -> NamePaletteCommand.register(dispatcher, registryAccess));
 		CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) -> NameCommand.register(dispatcher, registryAccess));
 	}
 }
