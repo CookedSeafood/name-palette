@@ -30,7 +30,7 @@ repositories {
 }
 
 loom {
-	accessWidenerPath = file("src/main/resources/namepalette.accesswidener")
+	accessWidenerPath = file("src/main/resources/name-palette.accesswidener")
 }
 
 dependencies {
@@ -42,7 +42,7 @@ dependencies {
 	// Fabric API. This is technically optional, but you probably want it anyway.
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 
-	modImplementation "maven.modrinth:candywrapper:${project.candywrapper_version}"
+	modImplementation "maven.modrinth:candy-wrapper:${project.cw_version}"
 }
 
 processResources {

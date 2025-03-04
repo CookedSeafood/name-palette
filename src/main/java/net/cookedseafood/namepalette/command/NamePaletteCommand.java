@@ -22,7 +22,7 @@ public class NamePaletteCommand {
     }
 
     public static int executeVersion(ServerCommandSource source) {
-		source.sendFeedback(() -> Text.literal("NamePalette " + NamePalette.versionMajor + "." + NamePalette.versionMinor + "." + NamePalette.versionPatch), false);
+		source.sendFeedback(() -> Text.literal("Name Palette " + NamePalette.versionMajor + "." + NamePalette.versionMinor + "." + NamePalette.versionPatch), false);
 		return 0;
 	}
 }

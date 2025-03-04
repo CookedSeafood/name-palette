@@ -8,7 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class NamePalette implements ModInitializer {
-	public static final String MOD_ID = "namepalette";
+	public static final String MOD_ID = "name-palette";
 
 	// This logger is used to write text to the console and the log file.
 	// It is considered best practice to use your mod id as the logger's name.
@@ -17,7 +17,7 @@ public class NamePalette implements ModInitializer {
 
 	public static final byte versionMajor = 1;
 	public static final byte versionMinor = 0;
-	public static final byte versionPatch = 3;
+	public static final byte versionPatch = 4;
 
 	@Override
 	public void onInitialize() {
@@ -25,7 +25,7 @@ public class NamePalette implements ModInitializer {
 		// However, some things (like resources) may still be uninitialized.
 		// Proceed with mild caution.
 
-		LOGGER.info("[NamePalette] Say hey YOURNAME how is it going");
+		LOGGER.info("[Name-Palette] Say hey XXX how is it going");
 
 		CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) -> NamePaletteCommand.register(dispatcher, registryAccess));
 		CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) -> NameCommand.register(dispatcher, registryAccess));
