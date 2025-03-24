@@ -2,11 +2,10 @@ package net.cookedseafood.namepalette.command;
 
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 import net.minecraft.command.CommandRegistryAccess;
 import net.minecraft.command.argument.ColorArgumentType;
 import net.minecraft.command.argument.TextArgumentType;
+import net.minecraft.scoreboard.Scoreboard;
 import net.minecraft.scoreboard.Team;
 import net.minecraft.server.command.CommandManager;
 import net.minecraft.server.command.ServerCommandSource;
@@ -54,31 +53,28 @@ public class NameCommand {
     }
 
 	private static Team getPlayerTeam(ServerCommandSource source) throws CommandSyntaxException {
+		Scoreboard scoreboard = source.getServer().getScoreboard();
 		ServerPlayerEntity player = source.getPlayerOrThrow();
 		String teamName = "name." + player.getUuidAsString();
-		try {
-			TeamCommand.executeAdd(source, teamName, player.getName());
-		} catch (CommandSyntaxException e) {
-		}
-
-		Team team = source.getServer().getScoreboard().getTeam(teamName);
-		TeamCommand.executeJoin(source, team, Stream.of(player.getScoreHolder()).collect(Collectors.toUnmodifiableList()));
+		Team team = scoreboard.getOrAddTeam(teamName);
+		team.setDisplayName(player.getName());
+		scoreboard.addScoreHolderToTeam(player.getNameForScoreboard(), team);
 		return team;
 	}
 
     public static int executeColor(ServerCommandSource source, Formatting color) throws CommandSyntaxException {
-		return TeamCommand.executeModifyColor(source, getPlayerTeam(source), color);
+		return TeamCommand.executeModifyColor(source, NameCommand.getPlayerTeam(source), color);
 	}
 
 	public static int executePrefix(ServerCommandSource source, Text prefix) throws CommandSyntaxException {
-		return TeamCommand.executeModifyPrefix(source, getPlayerTeam(source), prefix);
+		return TeamCommand.executeModifyPrefix(source, NameCommand.getPlayerTeam(source), prefix);
 	}
 
 	public static int executeSuffix(ServerCommandSource source, Text suffix) throws CommandSyntaxException {
-		return TeamCommand.executeModifySuffix(source, getPlayerTeam(source), suffix);
+		return TeamCommand.executeModifySuffix(source, NameCommand.getPlayerTeam(source), suffix);
 	}
 
 	public static int executeReset(ServerCommandSource source) throws CommandSyntaxException {
-		return TeamCommand.executeRemove(source, getPlayerTeam(source));
+		return TeamCommand.executeRemove(source, NameCommand.getPlayerTeam(source));
 	}
 }

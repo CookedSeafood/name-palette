@@ -17,7 +17,7 @@ public class NamePalette implements ModInitializer {
 
 	public static final byte versionMajor = 1;
 	public static final byte versionMinor = 0;
-	public static final byte versionPatch = 4;
+	public static final byte versionPatch = 5;
 
 	@Override
 	public void onInitialize() {
