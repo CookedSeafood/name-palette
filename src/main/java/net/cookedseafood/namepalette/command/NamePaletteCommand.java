@@ -8,21 +8,18 @@ import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.text.Text;
 
 public class NamePaletteCommand {
-    public NamePaletteCommand() {
-    }
-
     public static void register(CommandDispatcher<ServerCommandSource> dispatcher, CommandRegistryAccess registryAccess) {
         dispatcher.register(
             CommandManager.literal("namepalette")
             .then(
-				CommandManager.literal("version")
-				.executes(context -> executeVersion((ServerCommandSource)context.getSource()))
-			)
+                CommandManager.literal("version")
+                .executes(context -> executeVersion((ServerCommandSource)context.getSource()))
+            )
         );
     }
 
     public static int executeVersion(ServerCommandSource source) {
-		source.sendFeedback(() -> Text.literal("Name Palette " + NamePalette.versionMajor + "." + NamePalette.versionMinor + "." + NamePalette.versionPatch), false);
-		return 0;
-	}
+        source.sendFeedback(() -> Text.literal("Name Palette " + NamePalette.versionMajor + "." + NamePalette.versionMinor + "." + NamePalette.versionPatch), false);
+        return 0;
+    }
 }
