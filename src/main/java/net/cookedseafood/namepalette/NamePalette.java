@@ -16,7 +16,7 @@ public class NamePalette implements ModInitializer {
     public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
 
     public static final byte versionMajor = 1;
-    public static final byte versionMinor = 1;
+    public static final byte versionMinor = 2;
     public static final byte versionPatch = 0;
 
     @Override
